@@ -15,7 +15,7 @@ export const Container = styled.div`
   .sidebar__headerRight {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     min-width: 10vw;
   }
 
@@ -50,6 +50,7 @@ export const Container = styled.div`
     border: none;
     outline-width: 0;
     margin-left: 10px;
+    width: 90%;
   }
 
   .sidebar__issues {
