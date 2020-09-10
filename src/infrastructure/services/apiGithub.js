@@ -15,9 +15,9 @@ export const apiGithub = {
       return error;
     }
   },
-  getComments: async (number = '') => {
+  getComments: async (comments_url = '') => {
     try {
-      const response = await fetch( `${API_HOST_GITHUB}/${number}/${endpoints.github.comments}`);
+      const response = await fetch( `${comments_url}`);
       if (!response.ok || response.status === 404 || response.status === 403 || response.status === 409 || response.status === 500 ) {
         return response.statusText;
       }

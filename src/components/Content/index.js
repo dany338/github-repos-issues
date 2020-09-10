@@ -10,8 +10,17 @@ import {
 import { Container } from './styled';
 /* Assets */
 import Assets from '../../assets';
+/* Hooks */
+import { useGithub } from '../../infrastructure/hooks';
 
 const Content = props => {
+  const { githubCommentsIssueRequest, comments } = useGithub();
+
+  const reset = async e => {
+    e.preventDefault();
+    await githubCommentsIssueRequest('');
+  };
+
   return (
     <Container>
       <div className="content__header">
@@ -23,27 +32,21 @@ const Content = props => {
 
         <div className="chat__headerRight">
           <IconButton>
-            <RotateLeft />
+            <RotateLeft onClick={(e) => reset(e) } />
           </IconButton>
         </div>
       </div>
 
       <div className="content__body">
-        <p className="content__message">
-          <span className="content__name">....</span>
-          This is a comment
-          <span className="content__timestamp">
-            {new Date().toUTCString()}
-          </span>
-        </p>
-
-        <p className="content__message chat__reciever">
-          <span className="content__name">....</span>
-          This is a comment
-          <span className="content__timestamp">
-            {new Date().toUTCString()}
-          </span>
-        </p>
+        {comments.map((comment) => (
+          <div key={`comment-${comment.id}`} className="content__message">
+            <span className="content__name">{comment.user.login}</span>
+            <Avatar src={comment.user.avatar_url} /> {comment.body}
+            <span className="content__timestamp">
+              {new Date(comment.created_at).toUTCString()}
+            </span>
+          </div>
+        ))}
       </div>
 
       <div className="content__footer">

@@ -18,4 +18,9 @@ export const Container = styled.div`
     font-size: 16px;
     margin-bottom: 8px;
   }
+
+  .issue__info > h4 {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
 `;

@@ -22,7 +22,7 @@ export const Container = styled.div`
     font-weight: 500;
   }
 
-  .content__headerInfo > p {
+  .content__headerInfo > div {
     color: gray;
   }
 
